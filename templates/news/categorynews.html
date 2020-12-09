@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>All News</h1>
+
+<form class='search' action="{% url 'search' %}" autocomplete="off" >
+    <input type="text" placeholder="Search for keywords" name='search'>
+    <select name="country">
+        <option selected="true" disabled="disabled"> Select Country</option>
+        {% for key, value in country_choices.items %}
+            <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+    </select>
+    <select name="sources" multiple> 
+        <option selected="true" disabled="disabled"> Select News Source</option>
+        {% for key, value in source_choices.items %}
+            <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+    </select>
+    <button class="btn btn-secondary btn-block mt-4" type="submit">Search</button>
+</form>
+
+<hr>
+<br>
+
+<form class='languageselection' action="{% url 'categorywisenews' %}" autocomplete="off">
+    <select name='language'>
+        <p>Select Language</p><option selected='true'>Select Language</option>
+        {% for key, value in language_choices.items %}
+            <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+    </select>
+    <button type='submit'>Submit</button>
+</form>
+<br>
+
+{% include 'partials/_alerts.html' %}
+
+<div class="container">
+    {% for c, display_list in category_wise_list %}
+        <h3>{{c}}</h3>
+        {% for title, source, img, desc, url in display_list %}
+            {% if img %}
+                <img src="{{img}}" height=100px width=130px>
+            {% else %}
+                <img src="{% static 'img/news.png' %}" height=100px width=130px>
+            {% endif %}
+            <a href="{{url}}" target="_blank">{{title}}</a>
+            <p>(Source: {{source}})</p>
+            {% if desc %}
+                <p>{{desc}}</p>
+            {% endif %}
+        {% endfor %}
+        <br>
+        <p>more>>></p>
+        <br><br>
+    {% endfor %}
+</div>
+{% endblock %}

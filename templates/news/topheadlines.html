@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Top Headlines</h1>
+
+<form class='search' action="{% url 'topheadlines' %}">
+    <input type="text" placeholder="Search for keyword" name='querysearch'>
+    <select name="category">
+        <option selected="true" disabled="disabled"> Select Category</option>
+        {% for c in category_choices %}
+            <option value="{{c}}">{{c}}</option>
+        {% endfor %}
+    </select>
+    <select name="country">
+        <option selected="true" disabled="disabled"> Select Country</option>
+        {% for key, value in country_choices.items %}
+            <option value="{{key}}">{{value}}</option>
+        {% endfor %}
+    </select>
+    <button class="btn btn-secondary btn-block mt-4" type="submit">Search</button>
+</form>
+
+{% include 'partials/_alerts.html' %}
+
+<div class="container">
+    {% for title, source, url in display_list %}
+        <div style="display:inline-block;">
+            <a href="{{url}}" target="_blank">{{title}}</a>
+        </div>
+        <div style="display:inline-block;">
+            <p>(Source: {{source}})</p>
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+{% endblock %}
