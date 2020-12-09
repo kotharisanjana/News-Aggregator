@@ -12,5 +12,5 @@ Following features are provided:
 
 
 ### To do
-Celery beat scheduled tasks.
-CSS and Bootstrap
+1. Celery beat scheduled tasks.
+2. CSS and Bootstrap
