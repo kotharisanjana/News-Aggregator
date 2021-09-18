@@ -3,7 +3,7 @@
 A one-stop platform for news from across 55 countries in the world in the respctive local languages. 
 
 ### Overview
-Django application that sources top headlines and all news articles using Django REST Fraework for fetching API data (https://newsapi.org/)
+Django application that sources top headlines and all news articles using Django REST Framework for fetching API data (https://newsapi.org/)
 Following features are provided:
 1. Allows users to search for specific news by typing keywords.
 2. User can read news in their preferred languages.
